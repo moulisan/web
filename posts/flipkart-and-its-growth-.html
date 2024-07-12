@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart and its growth ...</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="../index.html">GC Mouli's Blog</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../sonofcauvery.html">Son of Cauvery</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Flipkart and its growth ...</h1>
+            [caption id="attachment_3569" align="alignnone" width="800"]
+<a href="https://gcmouli.com/blog/wp-content/uploads/2015/03/Flipkart-logo_blue.jpg">
+ <img alt="Flipkart-logo_blue" class="wp-image-3569 size-full" height="254" src="https://gcmouli.com/blog/wp-content/uploads/2015/03/Flipkart-logo_blue.jpg" width="800"/>
+</a>
+(img src: flipkart.com)[/caption]
+<strong>
+ Disclaimer:
+</strong>
+<em>
+ These are the thoughts of an engineer who is not fully familiar with the ecommerce domain. So there may be holes in this post, which are predominantly because of my ignorance. I urge the readers/commenters to fill these holes if possible, and I will be indebted to them for improving my knowledge, and showing me the light.
+</em>
+This post is a result of several emails from recruiters that I get that promise me the promised land if I join Flipkart or Myntra or Snapdeal. Note that I am not talking about Amazon in this post, and I will try and mention why, somewhere in this post. The above mentioned three companies are, at this point in time, and to the best of my knowledge, are pure ecommerce businesses.
+<strong>
+ My definition of pure ecommerce businesses:
+</strong>
+Online portals which serve as a market place for vendors to hawk their goods online. Customers are spared the ignominy of visiting a dozen websites to get the best deal, rather they go to this one large market place, where they get the 'best deal'.
+<strong>
+ My definition of best price
+</strong>
+and how it is achieved: You may ask (as I did, until I recently read an article online) on how can these vendors can offer these special deals. The online market place offers incentive to these vendors/sellers to come and sell in their market places. If the vendor incurs a loss of Rs. X because he is offering a certain special deal, the marketplaces compensates for this loss. And in some cases, even more so that, the vendor continues to operate in this method (of offering continuous special deals).
+<strong>
+ My understanding of where the money comes from:
+</strong>
+The principal source for these moneys to offer to the vendors come from the venture capital funding. I see no other source. There are some fees that the vendors/sellers need to pay, but I would only imagine that to take care of the operational costs (servers, bandwidth etc) and perhaps offset a portion of the salaries.
+
+Ok, now that I have exhausted my understanding of how the business works (and yes I know, this is probably an extremely myopic and 50000ft view), let us talk about my understanding of what goes into making all of this happen - on the technical side (because I am an engineer, you see).
+
+Let us talk about the various components that form running a market place such as Flipkart (or similar others).
+<strong>
+ Web UI:
+</strong>
+This involves the actual web page front end. There are three kinds of people involved in getting this together:
+<strong>
+ UI/UX designers:
+</strong>
+These are design people. They may or may not code. They talk about fonts, mouse click counts, positioning of advertisements, CSS, positional relevance, cognitive dissonance etc. In short, these people design the front end web page, so that the user can use it with most ease. They also design such that users are persuaded to purchase. And not just purchase anything, sometimes, UX designers can design such that, the users are persuaded to buy what the market place wants you to buy.
+<strong>
+ UI/UX coders:
+</strong>
+These are folks who translate what the UI/UX designers mean into actual code. These are engineers who specialize in HTML/CSS/Javascript, perhaps the LAMP stack, and let me just say similar visualization technologies (since there are just too many of them now, a few propping up every few months).
+<strong>
+ Backend engineers
+</strong>
+:
+
+The backend engineers probably can be broken down into a few specialists:
+<strong>
+ DBAs:
+</strong>
+These are folks who specialize in figuring out how the back end database should be structured - what are the tables? what are the table fields? What are the dependencies between the tables, between the fields? How should the tables be indexed? These are all questions, when answered correctly, results in a beautiful database experience, which guarantees the fastest data-access/response time. This means, when the frontend requests for some data from the DB, it gets it in the shortest amount of time.
+<strong>
+ Engineers who write the controllers:
+</strong>
+Theoretically, this can potentially be a separate category outside of backend, but most times, I have seen this to be lumped with the backend. These engineers write the piece of code, which take the input from the frontend, translate it into appropriate queries for the DB, and when the results are thrown back, give it in a appropriate way back to the front end. Mostly a conduit code, but performance and encapsulation is very important here.
+<strong>
+ Theorists/Algorithm Specialists:
+</strong>
+These are the people, IMHO, who differentiate the market place company from its competitors. They design prediction algorithms, based on data mining (what they now call big data). They probably design algorithms for pricing as well. Other theoretical areas where the theorists work on are algorithms to speed up information retrieval, techniques to cache data, so that performance of the frontend improves, techniques to make the entire marketplace solid/robust, failover techniques for the DB as well as web sessions etc. These are just a sampling, but I would imagine, an application of this size would throw up several 'researchy' challenges.
+<strong>
+ Mobile:
+</strong>
+By looking at its analytics, Flipkart has figured out that a majority of the traffic is coming in through the mobile space. This would involve specialized UX designers, and app programmers. Considering that there are three different app platforms (Android, iOS, WindowsPhone), there need to be three different teams doing this.
+<strong>
+ Platform:
+</strong>
+While I did mention this fleetingly, if flipkart is indeed taking care of their servers/datacenters, then this is a whole set of engineering challenges that need to be solved. I know this is involved deep work. Google has its own global infrastructure team just to keep the platform going.
+<strong>
+ Supply Chain:
+</strong>
+While this could be included in Miscellaneous, I saw that there was a renewed intense push in this direction from Flipkart and others. This is the software that tracks inventory in the fulfillment centers. It is also the software that tracks the delivery and procurement of various goods that are being sold in the market place. With Flipkart, getting into selling perishables (cookies etc), this part of the platform becomes tricky.
+<strong>
+ Advertisement:
+</strong>
+I got this from a recent
+<a href="http://yourstory.com/2015/03/flipkart-binny-bansal-mobile-data-platform/">
+ YourStory
+</a>
+article that I read. With a recent acquisition of adequity, it looks like Flipkart is getting into the advertisement business as well. The motivation for this, is the huge user base that the market place has now acquired. The large the user base, the more eyeballs, an advertiser can gather. This is ripe for classic captive audience type marketing (example of captive audience marketing - ads inside movie theatres).
+<strong>
+ Miscellaenous:
+</strong>
+There could be several misc features that one could imagine to improve the overall experience and robustness of the market place. An example that comes to mind is the 'zippy' online payment gateway that flipkart wrote on their own. Instead of outsourcing the payment gateway to one of the thirdparty players such as Citrus, they wrote their own. This is definitely a good thing. They improve their robustness (lesser dependency on a third party) and most likely reduces their expenses too (no fees to be paid to a thirdparty payment gateway).
+
+OK, Now the question which leaves me befuddled:
+
+I keep hearing that Flipkart (or one of the others) are expanding and creating new groups. I also know that Flipkart has established groups for all of the above categories that I mentioned (and probably more that I may have left out!). And I am not even talking about their ebooks business. That is a whole different take. Also, I am talking only about engineers. These businesses have a whole different sales side - vendor acquisitions, price point/deal negotiators, etc.
+<strong>
+ <em>
+  What more is there for them to grow out on? A market place is a market place. There are some building blocks that they can make better. But what more?
+ </em>
+</strong>
+And now, I will mention,
+<strong>
+ why I explicitly said, I am not talking about Amazon.
+</strong>
+The US/global Amazon company does a whole lot more than just the market place. They are experimenting with fresh grocery/vegetable delivery. They are experimenting with twitter #hashtag based ordering. They experimented with post office box based collection. So many more things. Some of those are also slowly trickling down to their India subsidiary for local applications. Their recent announcement of Amazon Kirana is one of those - last mile connectivity/delivery from local kirana stores.
+
+I have not really seen Flipkart grow in these adjacencies at all. Or perhaps they are not too public about their experiments - that I am not privy to.
+
+This question on what more are they hiring for, brings a lot of doubt and ambiguity in my mind, every time someone reaches out to me.
+<em>
+ <strong>
+  If someone has some time and energy, and would like to educate me (via comments or email), I would love to get educated.
+ </strong>
+</em>
+<b>
+ Update:
+</b>
+I added sections on mobile, advertising, supply-chain, and platform, after getting somewhat more educated. Some of the education came from
+<a href="http://yourstory.com/2015/03/flipkart-binny-bansal-mobile-data-platform/">
+ here
+</a>
+.
+
+        </main>
+        <footer>
+            <p>&copy; 2024 Your Name</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting a clear type font for your cmd window on XP</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="../index.html">GC Mouli's Blog</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../sonofcauvery.html">Son of Cauvery</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Setting a clear type font for your cmd window on XP</h1>
+            If you are like me, and you use the cmd window (or the MKS Korn Shell window, or the Cygwin window, or any other command line interface), you might be interested in this. If you had noticed earlier, these terminals had very limited font changing support. You could either change it to Lucida or to Raster. Both of them are definitely not the best. Microsoft recently released a set of clear type fonts, which are much much easier on the eyes, and look a whole lot better than the clunky lucida.
+<p style="text-align:center;">
+ <a href="http://gcmouli.files.wordpress.com/2008/05/terms.jpg">
+  <img alt="" class="size-full wp-image-518" height="480" src="http://gcmouli.files.wordpress.com/2008/05/terms.jpg" width="550"/>
+ </a>
+</p>
+<p style="text-align:center;">
+ <em>
+  (click on image to see full size. The clear type effect is best seen when you see it full size)
+ </em>
+</p>
+If you want your terminals to look like the above, jump to
+<a href="http://www.labnol.org/software/tutorials/change-font-dos-command-prompt-window-consolas-programming-font/3253/">
+ this link
+</a>
+to get a step-by-step tut on how to get this done. I did this just now, and it works like a dream.
+<strong>
+ Update:
+</strong>
+One of uses of this blog is to put some of the esoteric tricks that I find here, so that I can refer them later. Today was my day of reckoning. I wanted to add my new fav font "Monaco" to the mks bash font listing. So all I did was search my blog, and voila. One thing that I would do is to put in a screen shot here.
+
+Go to start-run-regedit. Then open up HKEY_LOCAL_MACHINE -&gt; software -&gt; Microsoft -&gt; Windows NT -&gt; Console -&gt; TrueTypeFont. Then right-click -&gt; new -&gt; string value. Add '000' as the key and the new font name as the value.
+<img alt="monaco1" class="aligncenter size-full wp-image-1367" height="237" src="http://gcmouli.files.wordpress.com/2008/05/monaco1.jpg" title="monaco1" width="720"/>
+
+        </main>
+        <footer>
+            <p>&copy; 2024 Your Name</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+import os
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+from datetime import datetime
+import re
+
+# Define paths
+export_file = 'gcmoulicom.WordPress.2024-07-05.xml'  # Replace with the path to your XML export file
+output_path = './'
+posts_path = os.path.join(output_path, 'posts')
+media_path = os.path.join(output_path, 'media')
+
+# Create output directories if they don't exist
+#os.makedirs(output_path, exist_ok=True)
+#os.makedirs(posts_path, exist_ok=True)
+#os.makedirs(media_path, exist_ok=True)
+
+def parse_export_file(file_path):
+    try:
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        return root
+    except ET.ParseError as e:
+        print(f"Failed to parse XML file: {e}")
+        return None
+
+def clean_filename(title):
+    # Convert to lowercase
+    filename = title.lower()
+    # Replace spaces with hyphens
+    filename = re.sub(r'\s+', '-', filename)
+    # Remove special characters
+    filename = re.sub(r'[^\w\-]', '', filename)
+    # Ensure filename ends with .html
+    if not filename.endswith('.html'):
+        filename += '.html'
+    return filename
+
+def create_html_file(title, body_content, filename):
+    html_template = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{title}</title>
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <header>
+            <h1><a href="../index.html">{title}</a></h1>
+        </header>
+        <main>
+            {body_content}
+        </main>
+        <footer>
+            <p>&copy; 2024 Your Name</p>
+        </footer>
+    </body>
+    </html>
+    """
+    with open(os.path.join(posts_path, filename), 'w', encoding='utf-8') as f:
+        f.write(html_template)
+
+def process_posts(root):
+    if root is None:
+        print("No XML root found. Exiting.")
+        return
+
+    posts_by_date = {}
+    
+    for item in root.findall('.//item'):
+        title = item.find('title').text if item.find('title') is not None else 'Untitled'
+        content = item.find('{http://purl.org/rss/1.0/modules/content/}encoded')
+        content = content.text if content is not None else None
+        pub_date = item.find('pubDate').text if item.find('pubDate') is not None else None
+
+        if content is None or pub_date is None:
+            print(f"Skipping post '{title}' because it has no content or publication date.")
+            continue
+
+        print(f"Processing post: {title}")
+
+        # Format publication date
+        pub_date_parsed = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
+        year_month = pub_date_parsed.strftime('%Y-%m')
+
+        if year_month not in posts_by_date:
+            posts_by_date[year_month] = []
+
+        # Use BeautifulSoup to prettify the content
+        soup = BeautifulSoup(content, 'html.parser')
+        body_content = soup.prettify()
+
+        # Create clean filename
+        filename = clean_filename(title)
+        create_html_file(title, body_content, filename)
+
+        # Add post to the list for the month and year
+        posts_by_date[year_month].append((title, filename))
+
+    return posts_by_date
+
+def generate_index_page(posts_by_date):
+    index_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Blog</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>My Blog</h1>
+        </header>
+        <main>
+    """
+
+    for year_month, posts in sorted(posts_by_date.items()):
+        index_content += f"<section><h2>{year_month}</h2><ul>"
+        for title, filename in posts:
+            index_content += f'<li><a href="posts/{filename}">{title}</a></li>'
+        index_content += "</ul></section>"
+
+    index_content += """
+        </main>
+        <footer>
+            <p>&copy; 2024 Your Name</p>
+        </footer>
+    </body>
+    </html>
+    """
+
+    with open(os.path.join(output_path, 'index.html'), 'w', encoding='utf-8') as f:
+        f.write(index_content)
+
+if __name__ == "__main__":
+    root = parse_export_file(export_file)
+    posts_by_date = process_posts(root)
+    generate_index_page(posts_by_date)
+    print("Static HTML site generated successfully.")
+
