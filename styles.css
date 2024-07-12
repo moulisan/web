@@ -1,6 +1,8 @@
 /* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
-    font-family: 'Arial', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     line-height: 1.75;
     margin: 0;
@@ -33,7 +35,7 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 20px;
 }
 
 nav ul li {
@@ -48,6 +50,10 @@ nav ul li a {
 main {
     padding: 2em;
     background: #fff;
+}
+
+h1 {
+    color: #8B0000; /* Deep red */
 }
 
 footer {
@@ -91,28 +97,6 @@ ul li a:hover {
     flex: 3;
 }
 
-.content aside {
-    flex: 1;
-    padding-left: 2em;
-}
-
-aside ul {
-    list-style: none;
-    padding: 0;
-}
-
-aside ul li {
-    margin-bottom: 0.5em;
-}
-
-aside ul li a {
-    color: #333;
-    text-decoration: none;
-}
-
-aside ul li a:hover {
-    text-decoration: underline;
-}
 
 p {
     margin-bottom: 1.5em;
@@ -122,4 +106,3 @@ img {
     max-width: 100%;
     height: auto;
 }
-
