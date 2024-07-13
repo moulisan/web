@@ -54,7 +54,7 @@ def create_html_file(title, body_content, filename):
             {body_content}
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </body>
     </html>
@@ -127,7 +127,7 @@ def generate_index_page(posts_by_date):
     index_content += """
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </body>
     </html>

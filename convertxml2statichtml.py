@@ -70,7 +70,7 @@ def create_html_file(title, body_content, filename):
             {body_content}
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </div>
 </body>
@@ -158,7 +158,7 @@ def generate_year_page(year, posts):
             </ul>
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </div>
 </body>
@@ -217,7 +217,7 @@ def generate_blog_page(posts_by_date):
             </div>
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </div>
 </body>
@@ -262,7 +262,7 @@ def generate_index_page():
             </ul>
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </div>
 </body>
@@ -299,7 +299,7 @@ def generate_son_of_cauvery_page():
             <p>The story follows the early life of Arulmozhivarman, who later becomes the great Chola emperor Rajaraja Chola I.</p>
         </main>
         <footer>
-            <p>&copy; 2024 Your Name</p>
+            <p>&copy; 2024 Mouli Gopalakrishnan</p>
         </footer>
     </div>
 </body>
