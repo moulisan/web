@@ -2,7 +2,7 @@ name: Generate Sitemap
 
 on:
   push:
-    branches: [ main ]  # or your default branch name
+    branches: [ master ]  # or your default branch name
   schedule:
     - cron: '0 0 * * 0'  # Run every Sunday at midnight
 
