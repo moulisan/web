@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
+import urllib.parse
 
 def generate_sitemap(base_url, directory):
     urlset = Element("urlset")
@@ -17,12 +18,20 @@ def generate_sitemap(base_url, directory):
                     path = path[1:]
                 if file == 'index.html':
                     path = path.replace('index.html', '')
-                loc.text = f"{base_url}/{path}"
+                else:
+                    # Ensure .html extension
+                    path = path.rstrip('html') + '.html'
+                
+                # Encode special characters in the URL
+                encoded_path = urllib.parse.quote(path)
+                loc.text = f"{base_url}/{encoded_path}"
+                
                 lastmod = SubElement(url, "lastmod")
                 lastmod.text = datetime.now().strftime("%Y-%m-%d")
 
     xml_string = minidom.parseString(tostring(urlset)).toprettyxml(indent="  ")
-    with open("sitemap.xml", "w") as f:
+    
+    with open("sitemap.xml", "w", encoding='utf-8') as f:
         f.write(xml_string)
 
 if __name__ == "__main__":
