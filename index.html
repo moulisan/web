@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GC Mouli - Personal Website</title>
+    <title>GC Mouli - Personal Homepage</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <div>GC Mouli</div>
             <nav>
+                <h1>GC Mouli</h1>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Blog</a></li>
@@ -20,53 +21,84 @@
         </header>
 
         <main>
-            <div class="main-header">
-                <h1>Mouli Gopalakrishnan</h1>
-                <div class="subtitle">Product Leader | Engineer | Designer</div>
-            </div>
-
-            <div class="social-links">
-                <a href="#" class="social-link">Twitter</a>
-                <a href="#" class="social-link">LinkedIn</a>
-            </div>
-
-            <section>
-                <h2>About Me</h2>
-                <p>Hi there! I'm GC Mouli, a tech enthusiast with over 20 years of experience in product management and engineering leadership. I currently work at Microsoft and have a Ph.D. from the University of South Florida in computer engineering.</p>
-                <p>Over the years, I've had the chance to build and lead amazing global teams across B2B, B2C, and B2B2C in Large Enterprise companies and startups. I have realized in recent years that I have maximum satisfaction at the intersection of people, product, and technology.</p>
-                <p>I mentor junior product managers and coach senior startup folks. Passionate about storytelling and writing, I'm currently retelling the Tamil epic novel Ponniyin Selvan in English.</p>
-                <p>I'm super interested in company cultures, career arcs, people, behaviors, personalities, and I learn all this from meeting people over breakfast.</p>
-            </section>
-
-            <section>
-                <h2>Interests</h2>
-                <div class="interests">
-                    <div class="interest">📷 Photography</div>
-                    <div class="interest">📖 Storytelling</div>
-                    <div class="interest">☕ Breakfast Meetings</div>
+            <section class="hero">
+                <h2>Mouli Gopalakrishnan</h2>
+                <p>Product Leader | Engineer | Designer</p>
+                <div class="social-links">
+                    <a href="https://twitter.com/gcmouli" target="_blank" rel="noopener noreferrer">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="https://in.linkedin.com/in/gcmouli" target="_blank" rel="noopener noreferrer">
+                        <i data-feather="linkedin"></i>
+                    </a>
                 </div>
             </section>
 
-            <section>
-                <h2>Work with Me</h2>
-                <div class="work-with-me">
-                    <div class="work-card">
-                        <h3>Coaching & Mentorship</h3>
+            <section class="about">
+                <h3>About Me</h3>
+                <div>
+                    <p>Hi there! I'm GC Mouli, a tech enthusiast with over 20 years of experience in product management and engineering leadership. I currently work at Microsoft and have a Ph.D. from the University of South Florida in computer engineering.</p>
+                    <p>Over the years, I've had the chance to build and lead amazing global teams across B2B, B2C, and B2B2C in Large Enterprise companies and startups. I have realized in recent years that I have maximum satisfaction at the intersection of people, product, and technology.</p>
+                    <p>I mentor junior product managers and coach senior startup folks. Passionate about storytelling and writing, I'm currently retelling the Tamil epic novel Ponniyin Selvan in English.</p>
+                    <p>I'm super interested in company cultures, career arcs, people, behaviors, personalities, and I learn all this from meeting people over breakfast.</p>
+                </div>
+            </section>
+<!--
+            <section class="interests">
+                <h3>Interests</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <i data-feather="camera"></i>
+                        <span>Photography</span>
+                    </div>
+                    <div class="interest-item">
+                        <i data-feather="book"></i>
+                        <span>Storytelling</span>
+                    </div>
+                    <div class="interest-item">
+                        <i data-feather="coffee"></i>
+                        <span>Breakfast Meetings</span>
+                    </div>
+                </div>
+            </section>
+  
+            <section class="work-with-me">
+                <h3>Work with Me</h3>
+                <div class="work-grid">
+                    <div class="work-item">
+                        <div class="work-header">
+                            <i data-feather="users"></i>
+                            <h4>Coaching & Mentorship</h4>
+                        </div>
                         <p>Elevate your product management skills or startup journey with personalized guidance. I offer one-on-one sessions tailored to your needs.</p>
-                        <a href="#" class="button">Book a Session</a>
+                        <button class="btn">
+                            <span>Book a Session</span>
+                            <i data-feather="chevron-right"></i>
+                        </button>
                     </div>
-                    <div class="work-card">
-                        <h3>Consulting Services</h3>
+                    <div class="work-item">
+                        <div class="work-header">
+                            <i data-feather="briefcase"></i>
+                            <h4>Consulting Services</h4>
+                        </div>
                         <p>Leverage my expertise in product strategy, team leadership, and technology integration to drive your business forward.</p>
-                        <a href="#" class="button">Inquire Now</a>
+                        <button class="btn">
+                            <span>Inquire Now</span>
+                            <i data-feather="chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </section>
+-->
         </main>
 
         <footer>
             <p>&copy; 2024 Mouli Gopalakrishnan. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        feather.replace();
+    </script>
 </body>
 </html>
