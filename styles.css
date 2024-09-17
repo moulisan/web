@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-
 body {
     font-family: 'Inter', sans-serif;
     font-size: 20px;
@@ -25,6 +24,9 @@ header {
     color: #333;
     padding: 1em 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header a {
@@ -54,14 +56,81 @@ main {
     background: #fff;
 }
 
+.main-header {
+    text-align: center;
+}
+
 h1 {
     color: #8B0000; /* Deep red */
+    margin-bottom: 5px;
 }
 
 h2 {
     color: #8B0000; /* Deep red */
-
 }
+
+.subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.social-link {
+    background-color: #8B0000;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.interests {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.interest {
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.work-with-me {
+    display: flex;
+    gap: 20px;
+}
+
+.work-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1;
+}
+
+.work-card h3 {
+    color: #8B0000;
+    margin-top: 0;
+}
+
+.button {
+    display: inline-block;
+    background-color: #8B0000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
 footer {
     background-color: #e6ddc4;
     color: #333;
@@ -103,7 +172,6 @@ ul li a:hover {
     flex: 3;
 }
 
-
 p {
     margin-bottom: 1.5em;
 }
@@ -118,5 +186,5 @@ a:link, a:visited, a:hover, a:active {
 }
 
 a:hover, a:active {
-    text-decoration: underline; /* Add this if you want underline on hover/active */
+    text-decoration: underline;
 }
