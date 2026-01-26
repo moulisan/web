@@ -3,121 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GC Mouli - Home</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <title>GC Mouli</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGJ9C40ZGL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NGJ9C40ZGL');
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFEFA;
+            --ink: #2C2416;
+            --muted: #6B5D4D;
+            --accent: #7C5E4A;
+            --accent-hover: #5C4535;
+            --border: #E8E2D9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.75;
+            color: var(--ink);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--ink);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--muted);
+            letter-spacing: 0.01em;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pull-quote p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+
+        /* About */
+        .about {
+            padding: 3rem 0;
+        }
+
+        .about p {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+        }
+
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .about a:hover {
+            border-color: var(--accent);
+        }
+
+        .about strong {
+            font-weight: 500;
+        }
+
+        /* Interests */
+        .interests {
+            padding: 2rem 0 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .interests-links {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .interests-links a {
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .interests-links a:hover {
+            color: var(--accent);
+        }
+
+        .interests-links .separator {
+            margin: 0 1rem;
+            color: var(--border);
+        }
+
+        .interests-links .coming-soon {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            margin-top: auto;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+
+            .page-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.15rem;
+            }
+
+            .pull-quote {
+                padding: 2rem 0;
+            }
+
+            .pull-quote p {
+                font-size: 1.25rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .interests-links .separator {
+                margin: 0 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <nav>
-                <h1>GC Mouli</h1>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="https://sonofcauverybook.in/html/index.html">Son of Cauvery</a></li>
-                </ul>
-            </nav>
+    <div class="page-container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="https://sonofcauverybook.in/html/index.html">Son of Cauvery</a></li>
+            </ul>
+        </nav>
+
+        <header class="hero">
+            <h1>Mouli<br>Gopalakrishnan</h1>
+            <p class="tagline">People, Product, Technology</p>
+            <div class="social-links">
+                <a href="https://twitter.com/gcmouli" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                </a>
+                <a href="https://in.linkedin.com/in/gcmouli" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
         </header>
 
-        <div class="content-card hero-card">
-            <section class="hero">
-                <h2>Mouli Gopalakrishnan</h2>
-                <p>People | Product | Technology</p>
-                <div class="social-links">  
-                    <a href="https://twitter.com/gcmouli" target="_blank" rel="noopener noreferrer">
-                        <i data-feather="twitter"></i>
-                    </a>
-                    <a href="https://in.linkedin.com/in/gcmouli" target="_blank" rel="noopener noreferrer">
-                        <i data-feather="linkedin"></i>
-                    </a>
-                </div>
-            </section>
-        </div>
+        <section class="pull-quote">
+            <p>"My sweet spot is at the intersection of people, product, and technology—that's where I make the biggest impact."</p>
+        </section>
 
-        <div class="content-card main-card">
-            <main>
-                <section class="about">
-                    <div>
-                        <p>Hi there! I'm GC Mouli, a product leader with over 20 years of experience in <b>Product Management and Engineering Leadership.</b><p>
+        <main class="about">
+            <p>I'm a product leader with over twenty years in <strong>Product Management and Engineering Leadership</strong>. Through my career, I've built and led global teams across B2B, B2C, and B2B2C, working with both large enterprises and startups.</p>
 
-                        <p>Through my career, I've built and led successful global teams across B2B, B2C, and B2B2C, working with both 
-                          large enterprises and startups. I've found that my sweet spot is at the <b>intersection of people, product, and technology</b> - 
-                          that's where I make the biggest impact.</p>
+            <p>Outside of work, I'm drawn to <strong>storytelling</strong>. I'm currently writing an <a href="https://sonofcauverybook.in/html/index.html">English retelling of Ponniyin Selvan</a>, the Tamil epic. I teach Product Management for ISB's PGP Pro program and facilitate workshops on storytelling and communication.</p>
 
-                        <p>Outside of work, I love <b>storytelling</b> and am currently working on an <a href="https://sonofcauverybook.in/html/index.html">English retelling of the Tamil epic, Ponniyin Selvan</a>. 
-                          I love to teach and instruct an occasional course on Product Management for the PGP Pro program at ISB; and facilitate workshops on storytelling and communication.
-                        </p>
+            <p>I'm endlessly curious about what makes companies and people tick—different cultures, career paths, personalities. One of my favorite ways to learn is meeting people over breakfast. Search LinkedIn for <a href="https://www.linkedin.com/search/results/all/?keywords=%23dosaWithMouli&origin=GLOBAL_SEARCH_HEADER&sid=%3AAM">#dosaWithMouli</a> to see what I mean.</p>
+        </main>
 
-                        <p>I'm always curious about what makes companies and people tick. I love learning about different <b>company cultures (especially cross-geographic setups), 
-                          career paths</b>, and personalities. One of my favorite ways to do this is by meeting people over breakfast 
-                          <b>(<a href="https://www.linkedin.com/search/results/all/?keywords=%23dosaWithMouli&origin=GLOBAL_SEARCH_HEADER&sid=%3AAM">search on linkedin for #dosaWithMouli</a>)</b>. 
-                          It's amazing what you can learn over a good meal!</p>
-                    </div>
-                </section>
-            </main>
-        </div>
-        <div class="content-card main-card">
-          <main>
-                <section class="interests">
-                  <div class="interests-grid">
-                    <div class="interest-item">
-                      <a href="https://www.flickr.com/photos/gcmouli/" target="_blank" rel="noopener noreferrer">
-                        <span>Photography</span>
-                      </a>
-                    </div>
-                    <div class="interest-item">
-                      <a href="https://sonofcauverybook.in/html/index.html" target="_blank" rel="noopener noreferrer">
-                        <span>Storytelling</span>
-                      </a>
-                    </div>
-                    <div class="interest-item">
-                      <span>#DosaWithMouli</span>
-                      <span class="coming-soon">coming soon</span>
-                    </div>
-                  </div>
-                </section>
-            </main>
-        </div>
-<!--  
-                <section class="work-with-me">
-                    <h3>Work with Me</h3>
-                    <div class="work-grid">
-                        <div class="work-item">
-                            <div class="work-header">
-                                <i data-feather="users"></i>
-                                <h4>Coaching & Mentorship</h4>
-                            </div>
-                            <p>Elevate your product management skills or startup journey with personalized guidance. I offer one-on-one sessions tailored to your needs.</p>
-                            <button class="btn">
-                                <span>Book a Session</span>
-                                <i data-feather="chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="work-item">
-                            <div class="work-header">
-                                <i data-feather="briefcase"></i>
-                                <h4>Consulting Services</h4>
-                            </div>
-                            <p>Leverage my expertise in product strategy, team leadership, and technology integration to drive your business forward.</p>
-                            <button class="btn">
-                                <span>Inquire Now</span>
-                                <i data-feather="chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </section>
--->
-            </main>
-        </div>
+        <section class="interests">
+            <p class="interests-links">
+                <a href="https://www.flickr.com/photos/gcmouli/" target="_blank" rel="noopener noreferrer">Photography</a>
+                <span class="separator">/</span>
+                <a href="https://sonofcauverybook.in/html/index.html" target="_blank" rel="noopener noreferrer">Storytelling</a>
+                <span class="separator">/</span>
+                <span class="coming-soon">#DosaWithMouli</span>
+            </p>
+        </section>
 
         <footer>
-            <p>&copy; 2024 Mouli Gopalakrishnan. All rights reserved.</p>
+            <p>&copy; 2025 Mouli Gopalakrishnan</p>
         </footer>
     </div>
-
-    <script>
-        feather.replace();
-    </script>
 </body>
 </html>
