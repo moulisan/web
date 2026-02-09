@@ -1,0 +1,13 @@
+{
+  "siteName": "GC Mouli",
+  "gaId": "G-NGJ9C40ZGL",
+  "fonts": "Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600",
+  "favicon": "../favicon-32x32.png",
+  "cssPath": "../styles.css",
+  "footer": "Mouli Gopalakrishnan",
+  "nav": [
+    { "label": "Home", "href": "../index.html" },
+    { "label": "Blog", "href": "../blog.html" },
+    { "label": "Son of Cauvery", "href": "https://sonofcauverybook.in/html/index.html" }
+  ]
+}
