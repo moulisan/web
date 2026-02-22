@@ -52,7 +52,7 @@
         }
 
         .page-container {
-            max-width: 720px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 2rem;
             flex: 1;
@@ -93,36 +93,39 @@
 
         /* Hero */
         .hero {
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 600;
             line-height: 1.1;
             letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .hero .intro {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--muted);
-            line-height: 1.7;
-            max-width: 600px;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto;
         }
 
         /* Stats */
         .stats {
-            padding: 1.5rem 0 2.5rem;
-            border-bottom: 1px solid var(--border);
+            text-align: center;
+            padding: 0.75rem 0 2rem;
             font-family: 'Source Sans 3', sans-serif;
         }
 
         .stats p {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .stats strong {
@@ -130,87 +133,45 @@
             font-weight: 600;
         }
 
-        /* Timeline */
-        .timeline {
-            padding: 2rem 0 3rem;
-            position: relative;
+        /* Year sections */
+        .year-section {
+            margin-bottom: 2.5rem;
         }
 
-        .year-group {
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .year-group::before {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 0.5rem;
-            bottom: 0;
-            width: 1px;
-            background: var(--border);
-        }
-
-        .year-group:last-child::before {
-            bottom: 2rem;
-        }
-
-        .year-heading {
+        .year-label {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: var(--ink);
-            margin-bottom: 1.5rem;
-            margin-left: -2.5rem;
-            padding-left: 2.5rem;
-            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .year-heading::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-
-        /* Timeline items */
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -2.5rem;
-            top: 1.5rem;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--border);
-            margin-left: 3px;
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }
 
         /* Cards */
-        .timeline-card {
+        .card {
             background: var(--warm-white);
             border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.2s, transform 0.2s;
         }
 
-        .timeline-card:hover {
-            box-shadow: 0 2px 12px rgba(44, 36, 22, 0.08);
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.1);
+            transform: translateY(-2px);
         }
 
         .card-photo {
             width: 100%;
-            aspect-ratio: 3 / 2;
+            aspect-ratio: 1 / 1;
             overflow: hidden;
             background: var(--border);
         }
@@ -228,7 +189,9 @@
             justify-content: center;
             color: var(--muted);
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 1rem;
         }
 
         .card-photo.no-photo::after {
@@ -239,43 +202,65 @@
             display: none;
         }
 
-        .card-content {
-            padding: 1.25rem 1.5rem;
+        .card-body {
+            padding: 0.75rem 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
         }
 
         .card-person {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            line-height: 1.3;
         }
 
-        .card-date {
+        .card-meta {
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.72rem;
             color: var(--muted);
-            margin-bottom: 0.15rem;
-        }
-
-        .card-venue {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            color: var(--muted);
+            line-height: 1.4;
+            margin-top: 0.15rem;
         }
 
         .card-social {
-            margin-top: 0.75rem;
             display: flex;
-            gap: 0.75rem;
+            gap: 0.4rem;
+            flex-shrink: 0;
+            padding-top: 0.1rem;
         }
 
         .social-icon {
-            color: var(--muted);
+            color: var(--border);
             transition: color 0.2s;
         }
 
         .social-icon:hover {
             color: var(--accent);
+        }
+
+        /* WIP Banner */
+        .wip-banner {
+            background: #F5E9D0;
+            border: 1.5px solid #C9A86C;
+            border-radius: 4px;
+            text-align: center;
+            padding: 0.9rem 1.5rem;
+            margin-bottom: 2rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #7A5C2E;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         /* Footer */
@@ -294,23 +279,43 @@
             }
 
             .page-container {
-                padding: 0 1.5rem;
+                padding: 0 1.25rem;
             }
 
             .hero {
-                padding: 3rem 0 1.5rem;
+                padding: 2.5rem 0 1rem;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.4rem;
             }
 
             nav ul {
                 gap: 1.25rem;
             }
 
-            .year-heading {
-                font-size: 1.5rem;
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .card-body {
+                padding: 0.6rem 0.7rem;
+            }
+
+            .card-person {
+                font-size: 0.8rem;
+            }
+
+            .card-meta {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -322,7 +327,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="https://sonofcauverybook.in/html/index.html">Son of Cauvery</a></li>
-                <li><a href="https://www.flickr.com/photos/gcmouli/" target="_blank" rel="noopener noreferrer">Photography</a></li>
+                <li><a href="sideprojects.html">Side Projects</a></li>
                 <li><a href="dosawithmouli.html" class="active">#DosaWithMouli</a></li>
             </ul>
         </nav>
@@ -332,184 +337,174 @@
             <p class="intro">Unstructured breakfast conversations with interesting people over dosa. Started around 2017 at Sukh Sagar, Koramangala, and still going.</p>
         </header>
 
-        <section class="stats">
-            <p><strong>10</strong> conversations and counting</p>
-        </section>
+        <div class="wip-banner">Work in progress. Please check back later.</div>
 
-        <main class="timeline">
+        <!-- <section class="stats">
+            <p><strong>10</strong> conversations and counting</p>
+        </section> -->
+
+        <main>
             
-        <div class="year-group">
-            <h2 class="year-heading">2025</h2>
-            <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+        <section class="year-section">
+            <h2 class="year-label">2025</h2>
+            <div class="card-grid">
+                <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/parul-raj-lodha.jpg" alt="Dosa with Parul Raj Lodha" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Parul Raj Lodha</h3>
-                    <p class="card-date">July 2025</p>
-                    <p class="card-venue">The Filter Coffee, Koramangala</p>
+                    <img src="dosa-photos/parul-raj-lodha.jpg" alt="Dosa with Parul Raj Lodha" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Parul Raj Lodha</span>
+                        <span class="card-meta">Jul &middot; The Filter Coffee, Koramangala</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7283720478746447872" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7283720478746447872" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/shubham-girdhar.jpg" alt="Dosa with Shubham Girdhar" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Shubham Girdhar</h3>
-                    <p class="card-date">February 2025</p>
-                    <p class="card-venue">Umesh Refreshments, Indiranagar</p>
+                    <img src="dosa-photos/shubham-girdhar.jpg" alt="Dosa with Shubham Girdhar" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Shubham Girdhar</span>
+                        <span class="card-meta">Feb &middot; Umesh Refreshments, Indiranagar</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1887515636391420063" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="https://x.com/gcmouli/status/1887515636391420063" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/vetri-venthan.jpg" alt="Dosa with Vetri Venthan" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Vetri Venthan</h3>
-                    <p class="card-date">January 2025</p>
-                    <p class="card-venue">Sukh Sagar + Wagh Bakhri Cafe, Koramangala</p>
+                    <img src="dosa-photos/vetri-venthan.jpg" alt="Dosa with Vetri Venthan" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Vetri Venthan</span>
+                        <span class="card-meta">Jan &middot; Sukh Sagar + Wagh Bakhri Cafe, Koramangala</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7290670268852289536" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7290670268852289536" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="year-group">
-            <h2 class="year-heading">2024</h2>
-            <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="card-photo">
-                <img src="dosa-photos/prashant-singh.jpg" alt="Dosa with Prashant Singh" onerror="this.parentElement.classList.add('no-photo')">
             </div>
-                <div class="card-content">
-                    <h3 class="card-person">Prashant Singh</h3>
-                    <p class="card-date">September 2024</p>
-                    <p class="card-venue">The Filter Coffee, Koramangala</p>
+        </section>
+        <section class="year-section">
+            <h2 class="year-label">2024</h2>
+            <div class="card-grid">
+                <div class="card">
+                <div class="card-photo">
+                    <img src="dosa-photos/prashant-singh.jpg" alt="Dosa with Prashant Singh" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Prashant Singh</span>
+                        <span class="card-meta">Sep &middot; The Filter Coffee, Koramangala</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7244593252252098560" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7244593252252098560" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/ashwin-murali.jpg" alt="Dosa with Ashwin Murali" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Ashwin Murali</h3>
-                    <p class="card-date">June 2024</p>
-                    <p class="card-venue">HSR Layout</p>
+                    <img src="dosa-photos/ashwin-murali.jpg" alt="Dosa with Ashwin Murali" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Ashwin Murali</span>
+                        <span class="card-meta">Jun &middot; HSR Layout</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7212327994091544576" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7212327994091544576" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/chennai-group.jpg" alt="Dosa with Vijay Thirumalai and friends" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Vijay Thirumalai and friends</h3>
-                    <p class="card-date">March 2024</p>
-                    <p class="card-venue">Chennai</p>
+                    <img src="dosa-photos/chennai-group.jpg" alt="Dosa with Vijay Thirumalai and friends" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Vijay Thirumalai and friends</span>
+                        <span class="card-meta">Mar &middot; Chennai</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7178242710215438336" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7178242710215438336" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/suri-raman.jpg" alt="Dosa with Suri Raman" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Suri Raman</h3>
-                    <p class="card-date">February 2024</p>
-                    <p class="card-venue">Bangalore</p>
+                    <img src="dosa-photos/suri-raman.jpg" alt="Dosa with Suri Raman" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Suri Raman</span>
+                        <span class="card-meta">Feb &middot; Bangalore</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1757608571641528656" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="https://x.com/gcmouli/status/1757608571641528656" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="year-group">
-            <h2 class="year-heading">2023</h2>
-            <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="card-photo">
-                <img src="dosa-photos/divz-i-am.jpg" alt="Dosa with @divz_i_am" onerror="this.parentElement.classList.add('no-photo')">
             </div>
-                <div class="card-content">
-                    <h3 class="card-person">@divz_i_am</h3>
-                    <p class="card-date">December 2023</p>
-                    <p class="card-venue">Bangalore</p>
+        </section>
+        <section class="year-section">
+            <h2 class="year-label">2023</h2>
+            <div class="card-grid">
+                <div class="card">
+                <div class="card-photo">
+                    <img src="dosa-photos/divz-i-am.jpg" alt="Dosa with @divz_i_am" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">@divz_i_am</span>
+                        <span class="card-meta">Dec &middot; Bangalore</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1737800754269188384" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="https://x.com/gcmouli/status/1737800754269188384" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+            <div class="card">
                 <div class="card-photo">
-                <img src="dosa-photos/narayanan-hariharan.jpg" alt="Dosa with Narayanan Hariharan" onerror="this.parentElement.classList.add('no-photo')">
-            </div>
-                <div class="card-content">
-                    <h3 class="card-person">Narayanan Hariharan</h3>
-                    <p class="card-date">July 2023</p>
-                    <p class="card-venue">Bangalore</p>
+                    <img src="dosa-photos/narayanan-hariharan.jpg" alt="Dosa with Narayanan Hariharan" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Narayanan Hariharan</span>
+                        <span class="card-meta">Jul &middot; Bangalore</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1681693253861969920" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="https://x.com/gcmouli/status/1681693253861969920" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="year-group">
-            <h2 class="year-heading">2022</h2>
-            <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="card-photo">
-                <img src="dosa-photos/sanjay-nagamangalam.jpg" alt="Dosa with Sanjay Nagamangalam" onerror="this.parentElement.classList.add('no-photo')">
             </div>
-                <div class="card-content">
-                    <h3 class="card-person">Sanjay Nagamangalam</h3>
-                    <p class="card-date">June 2022</p>
-                    <p class="card-venue">Bangalore</p>
+        </section>
+        <section class="year-section">
+            <h2 class="year-label">2022</h2>
+            <div class="card-grid">
+                <div class="card">
+                <div class="card-photo">
+                    <img src="dosa-photos/sanjay-nagamangalam.jpg" alt="Dosa with Sanjay Nagamangalam" onerror="this.parentElement.classList.add('no-photo')">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">Sanjay Nagamangalam</span>
+                        <span class="card-meta">Jun &middot; Bangalore</span>
+                    </div>
                     <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6945627754610049024" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6945627754610049024" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+            </div>
+        </section>
         </main>
 
         <footer>

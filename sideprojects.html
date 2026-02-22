@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Projects - GC Mouli</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGJ9C40ZGL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NGJ9C40ZGL');
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFEFA;
+            --ink: #2C2416;
+            --muted: #6B5D4D;
+            --accent: #7C5E4A;
+            --accent-hover: #5C4535;
+            --border: #E8E2D9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.75;
+            color: var(--ink);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--ink);
+        }
+
+        nav a.active {
+            color: var(--ink);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .intro {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* Project list */
+        .project-list {
+            padding: 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        /* Project card */
+        .project-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0;
+            overflow: hidden;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .project-card-body {
+            padding: 1.25rem 1.5rem 1.4rem;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .project-name:hover {
+            color: var(--accent);
+        }
+
+        .project-link {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-hover);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 1200 / 630;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-meta {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            margin-top: auto;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+
+            .page-container {
+                padding: 0 1.25rem;
+            }
+
+            .hero {
+                padding: 2.5rem 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            nav ul {
+                gap: 1.25rem;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .project-card {
+                padding: 1.25rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="https://sonofcauverybook.in/html/index.html">Son of Cauvery</a></li>
+                <li><a href="sideprojects.html" class="active">Side Projects</a></li>
+                <li><a href="dosawithmouli.html">#DosaWithMouli</a></li>
+            </ul>
+        </nav>
+
+        <header class="hero">
+            <h1>Side Projects</h1>
+            <p class="intro">Things I've built on the side, vibe coded. Each one ends with a deployed URL.</p>
+        </header>
+
+        <main class="project-list">
+
+            <div class="project-card">
+                <img src="project-thumbs/sabha.png" alt="Sabha" class="project-thumb">
+                <div class="project-card-body">
+                    <div class="project-header">
+                        <a href="https://sabha-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project-name">Sabha</a>
+                        <a href="https://sabha-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">sabha-ai.vercel.app ↗</a>
+                    </div>
+                    <p class="project-desc">An AI debate entertainment app where language models battle over spicy topics — from Delhi vs Bangalore to the four-day work week. Pick a debate, choose your heat level (Sane, Heated, or Screamer), and watch GPT, Claude, and Llama go round by round with a crowd verdict at the end.</p>
+                    <p class="project-meta">Vibe coded &middot; Feb 2026</p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mouli Gopalakrishnan</p>
+        </footer>
+    </div>
+</body>
+</html>
