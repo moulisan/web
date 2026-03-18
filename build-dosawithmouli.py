@@ -1,41 +1,39 @@
 #!/usr/bin/env python3
 """
 Build script for dosawithmouli.html
-Reads dosawithmouli-data.json, generates a static timeline page.
+Reads dosawithmouli-data.json, generates a static photo-grid page.
 Run: python3 build-dosawithmouli.py
 """
 
 import json
 import os
 from collections import defaultdict
-from datetime import datetime
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(SCRIPT_DIR, "dosawithmouli-data.json")
 OUTPUT_FILE = os.path.join(SCRIPT_DIR, "dosawithmouli.html")
 
 MONTH_NAMES = {
-    "01": "January", "02": "February", "03": "March", "04": "April",
-    "05": "May", "06": "June", "07": "July", "08": "August",
-    "09": "September", "10": "October", "11": "November", "12": "December",
+    "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr",
+    "05": "May", "06": "Jun", "07": "Jul", "08": "Aug",
+    "09": "Sep", "10": "Oct", "11": "Nov", "12": "Dec",
 }
 
 # X (Twitter) icon SVG
-X_ICON = '''<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>'''
+X_ICON = '''<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>'''
 
 # LinkedIn icon SVG
-LINKEDIN_ICON = '''<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>'''
+LINKEDIN_ICON = '''<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>'''
 
 
-def format_date(date_str):
+def format_month(date_str):
     parts = date_str.split("-")
-    year = parts[0]
     month = MONTH_NAMES.get(parts[1], parts[1]) if len(parts) > 1 else ""
-    return f"{month} {year}"
+    return month
 
 
 def build_card(entry):
-    date_display = format_date(entry["date"])
+    month = format_month(entry["date"])
     person = entry["person"]
     venue = entry["venue"]
     photo = entry.get("photo", "")
@@ -45,8 +43,8 @@ def build_card(entry):
     photo_html = ""
     if photo:
         photo_html = f'''<div class="card-photo">
-                <img src="{photo}" alt="Dosa with {person}" onerror="this.parentElement.classList.add('no-photo')">
-            </div>'''
+                    <img src="{photo}" alt="Dosa with {person}" onerror="this.parentElement.classList.add('no-photo')">
+                </div>'''
 
     social_links = []
     if twitter:
@@ -57,29 +55,25 @@ def build_card(entry):
         social_links.append(
             f'<a href="{linkedin}" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon">{LINKEDIN_ICON}</a>'
         )
-    social_html = "\n                ".join(social_links) if social_links else ""
+    social_html = "\n                    ".join(social_links) if social_links else ""
 
-    return f'''<div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
+    return f'''<div class="card">
                 {photo_html}
-                <div class="card-content">
-                    <h3 class="card-person">{person}</h3>
-                    <p class="card-date">{date_display}</p>
-                    <p class="card-venue">{venue}</p>
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-person">{person}</span>
+                        <span class="card-meta">{month} &middot; {venue}</span>
+                    </div>
                     <div class="card-social">
                         {social_html}
                     </div>
                 </div>
-            </div>
-        </div>'''
+            </div>'''
 
 
 def build_html(entries):
-    # Sort newest first
     entries.sort(key=lambda e: e["date"], reverse=True)
 
-    # Group by year
     by_year = defaultdict(list)
     for entry in entries:
         year = entry["date"].split("-")[0]
@@ -87,15 +81,16 @@ def build_html(entries):
 
     total = len(entries)
 
-    # Build timeline sections
-    timeline_html = ""
+    sections_html = ""
     for year in sorted(by_year.keys(), reverse=True):
-        cards = "\n        ".join(build_card(e) for e in by_year[year])
-        timeline_html += f'''
-        <div class="year-group">
-            <h2 class="year-heading">{year}</h2>
-            {cards}
-        </div>'''
+        cards = "\n            ".join(build_card(e) for e in by_year[year])
+        sections_html += f'''
+        <section class="year-section">
+            <h2 class="year-label">{year}</h2>
+            <div class="card-grid">
+                {cards}
+            </div>
+        </section>'''
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -151,7 +146,7 @@ def build_html(entries):
         }}
 
         .page-container {{
-            max-width: 720px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 2rem;
             flex: 1;
@@ -192,36 +187,39 @@ def build_html(entries):
 
         /* Hero */
         .hero {{
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
         }}
 
         .hero h1 {{
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 600;
             line-height: 1.1;
             letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }}
 
         .hero .intro {{
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--muted);
-            line-height: 1.7;
-            max-width: 600px;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto;
         }}
 
         /* Stats */
         .stats {{
-            padding: 1.5rem 0 2.5rem;
-            border-bottom: 1px solid var(--border);
+            text-align: center;
+            padding: 0.75rem 0 2rem;
             font-family: 'Source Sans 3', sans-serif;
         }}
 
         .stats p {{
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }}
 
         .stats strong {{
@@ -229,87 +227,45 @@ def build_html(entries):
             font-weight: 600;
         }}
 
-        /* Timeline */
-        .timeline {{
-            padding: 2rem 0 3rem;
-            position: relative;
+        /* Year sections */
+        .year-section {{
+            margin-bottom: 2.5rem;
         }}
 
-        .year-group {{
-            position: relative;
-            padding-left: 2.5rem;
-        }}
-
-        .year-group::before {{
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 0.5rem;
-            bottom: 0;
-            width: 1px;
-            background: var(--border);
-        }}
-
-        .year-group:last-child::before {{
-            bottom: 2rem;
-        }}
-
-        .year-heading {{
+        .year-label {{
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: var(--ink);
-            margin-bottom: 1.5rem;
-            margin-left: -2.5rem;
-            padding-left: 2.5rem;
-            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }}
 
-        .year-heading::before {{
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: var(--accent);
-        }}
-
-        /* Timeline items */
-        .timeline-item {{
-            position: relative;
-            margin-bottom: 2rem;
-        }}
-
-        .timeline-dot {{
-            position: absolute;
-            left: -2.5rem;
-            top: 1.5rem;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--border);
-            margin-left: 3px;
+        /* Card grid */
+        .card-grid {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }}
 
         /* Cards */
-        .timeline-card {{
+        .card {{
             background: var(--warm-white);
             border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.2s, transform 0.2s;
         }}
 
-        .timeline-card:hover {{
-            box-shadow: 0 2px 12px rgba(44, 36, 22, 0.08);
+        .card:hover {{
+            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.1);
+            transform: translateY(-2px);
         }}
 
         .card-photo {{
             width: 100%;
-            aspect-ratio: 3 / 2;
+            aspect-ratio: 1 / 1;
             overflow: hidden;
             background: var(--border);
         }}
@@ -327,7 +283,9 @@ def build_html(entries):
             justify-content: center;
             color: var(--muted);
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 1rem;
         }}
 
         .card-photo.no-photo::after {{
@@ -338,38 +296,44 @@ def build_html(entries):
             display: none;
         }}
 
-        .card-content {{
-            padding: 1.25rem 1.5rem;
+        .card-body {{
+            padding: 0.75rem 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }}
+
+        .card-info {{
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
         }}
 
         .card-person {{
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            line-height: 1.3;
         }}
 
-        .card-date {{
+        .card-meta {{
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.72rem;
             color: var(--muted);
-            margin-bottom: 0.15rem;
-        }}
-
-        .card-venue {{
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            color: var(--muted);
+            line-height: 1.4;
+            margin-top: 0.15rem;
         }}
 
         .card-social {{
-            margin-top: 0.75rem;
             display: flex;
-            gap: 0.75rem;
+            gap: 0.4rem;
+            flex-shrink: 0;
+            padding-top: 0.1rem;
         }}
 
         .social-icon {{
-            color: var(--muted);
+            color: var(--border);
             transition: color 0.2s;
         }}
 
@@ -393,23 +357,43 @@ def build_html(entries):
             }}
 
             .page-container {{
-                padding: 0 1.5rem;
+                padding: 0 1.25rem;
             }}
 
             .hero {{
-                padding: 3rem 0 1.5rem;
+                padding: 2.5rem 0 1rem;
             }}
 
             .hero h1 {{
-                font-size: 2.5rem;
+                font-size: 2.4rem;
             }}
 
             nav ul {{
                 gap: 1.25rem;
             }}
 
-            .year-heading {{
-                font-size: 1.5rem;
+            .card-grid {{
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }}
+        }}
+
+        @media (max-width: 480px) {{
+            .card-grid {{
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }}
+
+            .card-body {{
+                padding: 0.6rem 0.7rem;
+            }}
+
+            .card-person {{
+                font-size: 0.8rem;
+            }}
+
+            .card-meta {{
+                font-size: 0.65rem;
             }}
         }}
     </style>
@@ -435,8 +419,8 @@ def build_html(entries):
             <p><strong>{total}</strong> conversations and counting</p>
         </section>
 
-        <main class="timeline">
-            {timeline_html}
+        <main>
+            {sections_html}
         </main>
 
         <footer>
@@ -449,7 +433,7 @@ def build_html(entries):
 
 def main():
     if not os.path.exists(DATA_FILE):
-        print(f"Error: {DATA_FILE} not found")
+        print(f"Error: {{DATA_FILE}} not found")
         return
 
     with open(DATA_FILE, "r") as f:
