@@ -6,11 +6,6 @@
     <title>#DosaWithMouli - GC Mouli</title>
     <link rel="icon" type="image/png" href="favicon-32x32.png">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGJ9C40ZGL"></script>
     <script>
@@ -19,6 +14,10 @@
         gtag('js', new Date());
         gtag('config', 'G-NGJ9C40ZGL');
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -31,15 +30,8 @@
             --border: #E8E2D9;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            font-size: 18px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 18px; scroll-behavior: smooth; }
 
         body {
             font-family: 'Lora', Georgia, serif;
@@ -47,33 +39,24 @@
             color: var(--ink);
             background-color: var(--cream);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        .page-container {
-            max-width: 960px;
+        /* Top nav */
+        .top-nav {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navigation */
-        nav {
-            padding: 2rem 0;
+            padding: 2rem 2rem 0;
             font-family: 'Source Sans 3', sans-serif;
         }
 
-        nav ul {
+        .top-nav ul {
             list-style: none;
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
         }
 
-        nav a {
+        .top-nav a {
             color: var(--muted);
             text-decoration: none;
             font-size: 0.85rem;
@@ -83,23 +66,26 @@
             transition: color 0.2s;
         }
 
-        nav a:hover {
-            color: var(--ink);
-        }
-
-        nav a.active {
-            color: var(--ink);
-        }
+        .top-nav a:hover { color: var(--ink); }
 
         /* Hero */
         .hero {
-            padding: 3rem 0 1.5rem;
-            text-align: center;
+            padding: 3rem 2rem 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 600;
             line-height: 1.1;
             letter-spacing: -0.02em;
@@ -107,17 +93,25 @@
         }
 
         .hero .intro {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--muted);
             line-height: 1.6;
-            max-width: 520px;
-            margin: 0 auto;
         }
 
-        /* Stats */
+        .hero-illustration {
+            flex-shrink: 0;
+            width: 410px;
+        }
+
+        .hero-illustration img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
         .stats {
             text-align: center;
-            padding: 0.75rem 0 2rem;
+            padding: 0.75rem 2rem 2rem;
             font-family: 'Source Sans 3', sans-serif;
         }
 
@@ -133,9 +127,76 @@
             font-weight: 600;
         }
 
-        /* Year sections */
+        .stats-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            max-width: 1100px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Main layout: sidebar + content */
+        .main-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 5rem;
+            align-items: flex-start;
+        }
+
+        /* Sticky year sidebar */
+        .year-nav {
+            position: sticky;
+            top: 2rem;
+            flex-shrink: 0;
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding-top: 0.5rem;
+        }
+
+        .year-nav-link {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+
+        .year-nav-link:hover {
+            color: var(--ink);
+        }
+
+        .year-nav-link.active {
+            color: var(--ink);
+            border-left-color: var(--accent);
+        }
+
+        .year-nav-count {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            min-width: 0;
+            max-width: 700px;
+        }
+
         .year-section {
             margin-bottom: 2.5rem;
+            scroll-margin-top: 1.5rem;
         }
 
         .year-label {
@@ -144,19 +205,17 @@
             font-weight: 600;
             color: var(--ink);
             padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             border-bottom: 1px solid var(--border);
         }
 
-        /* Card grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .tweet-list {
+            display: flex;
+            flex-direction: column;
             gap: 1.25rem;
         }
 
-        /* Cards */
-        .card {
+        .tweet-card {
             background: var(--warm-white);
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -164,352 +223,1060 @@
             transition: box-shadow 0.2s, transform 0.2s;
         }
 
-        .card:hover {
-            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.1);
-            transform: translateY(-2px);
+        .tweet-card:hover {
+            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.08);
+            transform: translateY(-1px);
         }
 
-        .card-photo {
+        .tweet-card img {
             width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            background: var(--border);
-        }
-
-        .card-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
         }
 
-        .card-photo.no-photo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
+        .tweet-card-body {
+            padding: 1.1rem 1.35rem;
+        }
+
+        .tweet-month {
             font-family: 'Source Sans 3', sans-serif;
             font-size: 0.75rem;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .card-photo.no-photo::after {
-            content: 'Photo coming soon';
-        }
-
-        .card-photo.no-photo img {
-            display: none;
-        }
-
-        .card-body {
-            padding: 0.75rem 0.85rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .card-info {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-        }
-
-        .card-person {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 0.9rem;
             font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .card-meta {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.72rem;
-            color: var(--muted);
-            line-height: 1.4;
-            margin-top: 0.15rem;
-        }
-
-        .card-social {
-            display: flex;
-            gap: 0.4rem;
-            flex-shrink: 0;
-            padding-top: 0.1rem;
-        }
-
-        .social-icon {
-            color: var(--border);
-            transition: color 0.2s;
-        }
-
-        .social-icon:hover {
             color: var(--accent);
-        }
-
-        /* WIP Banner */
-        .wip-banner {
-            background: #F5E9D0;
-            border: 1.5px solid #C9A86C;
-            border-radius: 4px;
-            text-align: center;
-            padding: 0.9rem 1.5rem;
-            margin-bottom: 2rem;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #7A5C2E;
-            letter-spacing: 0.1em;
             text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
         }
 
-        /* Footer */
+        .tweet-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+        }
+
+        .tweet-link {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .tweet-link:hover { color: var(--accent-hover); }
+        .tweet-link svg { width: 14px; height: 14px; }
+
         footer {
-            padding: 2rem 0;
-            margin-top: auto;
+            padding: 3rem 0 2rem;
+            text-align: center;
             font-family: 'Source Sans 3', sans-serif;
             font-size: 0.8rem;
             color: var(--muted);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            html {
-                font-size: 16px;
-            }
-
-            .page-container {
-                padding: 0 1.25rem;
-            }
-
-            .hero {
-                padding: 2.5rem 0 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-
-            nav ul {
-                gap: 1.25rem;
-            }
-
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
         }
 
-        @media (max-width: 480px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
+        footer a:hover { color: var(--accent-hover); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
             }
 
-            .card-body {
-                padding: 0.6rem 0.7rem;
+            .hero-text {
+                text-align: center;
             }
 
-            .card-person {
-                font-size: 0.8rem;
+            .hero-illustration {
+                width: 260px;
             }
 
-            .card-meta {
-                font-size: 0.65rem;
+            .main-layout {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 1rem;
             }
+
+            .year-nav {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                width: 100%;
+                flex-direction: row;
+                gap: 0;
+                padding: 0.6rem 0;
+                background: var(--cream);
+                border-bottom: 1px solid var(--border);
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .year-nav-link {
+                font-size: 0.95rem;
+                padding: 0.35rem 0.75rem;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                white-space: nowrap;
+            }
+
+            .year-nav-link.active {
+                border-left: none;
+                border-bottom-color: var(--accent);
+            }
+
+            .year-nav-count {
+                display: none;
+            }
+
+            html { font-size: 16px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero, .top-nav, .stats { padding-left: 1rem; padding-right: 1rem; }
+            .tweet-card-body { padding: 0.85rem 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="https://sonofcauverybook.in/html/index.html">Son of Cauvery</a></li>
-                <li><a href="sideprojects.html">Side Projects</a></li>
-                <li><a href="dosawithmouli.html" class="active">#DosaWithMouli</a></li>
-            </ul>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="https://gcmouli.com">Home</a></li>
+            <li><a href="https://gcmouli.com/blog.html">Writing</a></li>
+            <li><a class="active" href="#">#DosaWithMouli</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>#DosaWithMouli</h1>
+            <p class="intro">Meeting interesting people over breakfast. Unstructured conversations over dosa, filter coffee, and good company. Been doing this since 2017.</p>
+        </div>
+        <div class="hero-illustration"><img src="dosa-illustration.png" alt="Dosa plate illustration"></div>
+    </section>
+
+    <section class="stats">
+        <p>More than <strong>85</strong> meetups and counting</p>
+        <hr class="stats-divider">
+    </section>
+
+    <div class="main-layout">
+        <nav class="year-nav" aria-label="Jump to year">
+                    <a href="#year-2026" class="year-nav-link" data-year="2026">2026<span class="year-nav-count">[4]</span></a>
+                    <a href="#year-2025" class="year-nav-link" data-year="2025">2025<span class="year-nav-count">[12]</span></a>
+                    <a href="#year-2024" class="year-nav-link" data-year="2024">2024<span class="year-nav-count">[18]</span></a>
+                    <a href="#year-2023" class="year-nav-link" data-year="2023">2023<span class="year-nav-count">[24]</span></a>
+                    <a href="#year-2022" class="year-nav-link" data-year="2022">2022<span class="year-nav-count">[7]</span></a>
+                    <a href="#year-2021" class="year-nav-link" data-year="2021">2021<span class="year-nav-count">[2]</span></a>
         </nav>
 
-        <header class="hero">
-            <h1>#DosaWithMouli</h1>
-            <p class="intro">Unstructured breakfast conversations with interesting people over dosa. Started around 2017 at Sukh Sagar, Koramangala, and still going.</p>
-        </header>
+        <div class="content">
+            <section class="year-section" id="year-2026">
+                <h2 class="year-label">2026</h2>
+                <div class="tweet-list">
 
-        <div class="wip-banner">Work in progress. Please check back later.</div>
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2036769367137124607.jpg" alt="DosaWithMouli - March 2026" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2026</div>
+                            <p class="tweet-text">Always fun catching up with @jasnoorgill. #ThindiWithMouli #dosawithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2036769367137124607" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
 
-        <!-- <section class="stats">
-            <p><strong>10</strong> conversations and counting</p>
-        </section> -->
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2030927097011793972-HC9NazlaIAAIG_X.jpg" alt="DosaWithMouli - March 2026" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2026</div>
+                            <p class="tweet-text">Met up with Bhasker &quot;Bosky&quot; Kode for lunch. Well you see, Dosa is such a versatile dish, you can do #dosaWithMouli for lunch, evening snack, dinner as well (and not just breakfast :-))
 
-        <main>
-            
-        <section class="year-section">
-            <h2 class="year-label">2025</h2>
-            <div class="card-grid">
-                <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/parul-raj-lodha.jpg" alt="Dosa with Parul Raj Lodha" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Parul Raj Lodha</span>
-                        <span class="card-meta">Jul &middot; The Filter Coffee, Koramangala</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7283720478746447872" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/shubham-girdhar.jpg" alt="Dosa with Shubham Girdhar" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Shubham Girdhar</span>
-                        <span class="card-meta">Feb &middot; Umesh Refreshments, Indiranagar</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1887515636391420063" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/vetri-venthan.jpg" alt="Dosa with Vetri Venthan" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Vetri Venthan</span>
-                        <span class="card-meta">Jan &middot; Sukh Sagar + Wagh Bakhri Cafe, Koramangala</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7290670268852289536" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section class="year-section">
-            <h2 class="year-label">2024</h2>
-            <div class="card-grid">
-                <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/prashant-singh.jpg" alt="Dosa with Prashant Singh" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Prashant Singh</span>
-                        <span class="card-meta">Sep &middot; The Filter Coffee, Koramangala</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7244593252252098560" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/ashwin-murali.jpg" alt="Dosa with Ashwin Murali" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Ashwin Murali</span>
-                        <span class="card-meta">Jun &middot; HSR Layout</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7212327994091544576" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/chennai-group.jpg" alt="Dosa with Vijay Thirumalai and friends" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Vijay Thirumalai and friends</span>
-                        <span class="card-meta">Mar &middot; Chennai</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7178242710215438336" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/suri-raman.jpg" alt="Dosa with Suri Raman" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Suri Raman</span>
-                        <span class="card-meta">Feb &middot; Bangalore</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1757608571641528656" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section class="year-section">
-            <h2 class="year-label">2023</h2>
-            <div class="card-grid">
-                <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/divz-i-am.jpg" alt="Dosa with @divz_i_am" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">@divz_i_am</span>
-                        <span class="card-meta">Dec &middot; Bangalore</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1737800754269188384" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/narayanan-hariharan.jpg" alt="Dosa with Narayanan Hariharan" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Narayanan Hariharan</span>
-                        <span class="card-meta">Jul &middot; Bangalore</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://x.com/gcmouli/status/1681693253861969920" target="_blank" rel="noopener noreferrer" aria-label="View on X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section class="year-section">
-            <h2 class="year-label">2022</h2>
-            <div class="card-grid">
-                <div class="card">
-                <div class="card-photo">
-                    <img src="dosa-photos/sanjay-nagamangalam.jpg" alt="Dosa with Sanjay Nagamangalam" onerror="this.parentElement.classList.add('no-photo')">
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-person">Sanjay Nagamangalam</span>
-                        <span class="card-meta">Jun &middot; Bangalore</span>
-                    </div>
-                    <div class="card-social">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6945627754610049024" target="_blank" rel="noopener noreferrer" aria-label="View on LinkedIn" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        </main>
+Fascinating conversation with Bosky about his career trajectory from his early 2-room startup…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2030927097011793972" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
 
-        <footer>
-            <p>&copy; 2025 Mouli Gopalakrishnan</p>
-        </footer>
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2021106044861325754-HAxpCMKaYAA-vYU.jpg" alt="DosaWithMouli - February 2026" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2026</div>
+                            <p class="tweet-text">Amazing start to #dosaWithMouli for 2026, this bright sunny Tuesday morning - breakfast with Karthik S A. His firm (QL Partners) handles our on-demand legal requirements, and we hit it off at a personal level a few months ago in a call that we were having. We had a lot of common…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2021106044861325754" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2014561641011315015-G_UpFHKaAAAalt9.jpg" alt="DosaWithMouli - January 2026" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">January 2026</div>
+                            <p class="tweet-text">Met up with @SudipDutta  for #dosaWithMouli. Met after almost 3 yrs of punting and postponing. And what a joyous conversation it was. 
+
+Conversation that meandered around our career arcs, walkability of Bangalore, education, money, cost of convenience/peace of mind, public…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2014561641011315015" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="year-section" id="year-2025">
+                <h2 class="year-label">2025</h2>
+                <div class="tweet-list">
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2003489900029690025-G83TbMLbwAANzZ7.jpg" alt="DosaWithMouli - December 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2025</div>
+                            <p class="tweet-text">My #dosaWithMouli roundup for 2025. Lesser number of meet-ups this year (15) than 2024 - but then, I did not step out of home for 2.5 months because of my surgery. But what a blast. 
+
+Product builders. HR folks. Colleagues. Design Leaders. Folks in the VC ecosystem. So many…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2003489900029690025" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/2000436887337791718-G8L6vYGboAAyynb.jpg" alt="DosaWithMouli - December 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2025</div>
+                            <p class="tweet-text">Messi is in India. And how could I not ... #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/2000436887337791718" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1992252447176478883-G6XmvdpbQAAC2QY.jpg" alt="DosaWithMouli - November 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">November 2025</div>
+                            <p class="tweet-text">Sat morning well spent #dosaWithMouli with the one and only @jdallcaps. This meeting has been long pending, and we made it happen today. Rich conversation from my story, to his fantastic story (his trysts with typography, airport design (I am sure you did not know that!!), resort…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1992252447176478883" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1954920814266265782-GyFF1V9bQAAHQQu.jpg" alt="DosaWithMouli - August 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">August 2025</div>
+                            <p class="tweet-text">Amazing start to the week. #dosaWithMouli with @rnikhilcom  at The Filter Coffee, Koramangala. His story is amazing - winding from his school, college days, to Flipkart, to becoming a professional poker player, to PayTM poker, to getting into AI evals, to his current stint at…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1954920814266265782" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1948582938029031845-GwrB2N6bgAIEP9f.jpg" alt="DosaWithMouli - July 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2025</div>
+                            <p class="tweet-text">Stoked to find a decent dosa place near office where I can now have my #dosaWithMouli. Thanks @pratik_kr2008 for showing me this and having dosa with me today. Yes, they Bangalore and Chennai style dosa on the menu. I obviously had the Bangalore type and Pratik had Chennai style.…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1948582938029031845" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1947540940568330600-GwcOGPHbEAE0UES.jpg" alt="DosaWithMouli - July 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2025</div>
+                            <p class="tweet-text">There are a few rare times when I do two #dosaWithMouli meetups on consecutive days, and this week was one such. What an amazing conversation over Dosa with @nandiniv. We have been connected since forever on twitter (what some of us fondly call OG twitter). Lots of common…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1947540940568330600" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1947153934839394354-GwWtOHeXIAE9Ndp.jpg" alt="DosaWithMouli - July 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2025</div>
+                            <p class="tweet-text">Amazing start to the week. This #DosaWithMouli with @sindhicrawford  has been pending for a long while. Awesome conversation that ranged from Anushka&#x27;s very wide educational background from media to fashion, her stints with Trent, and of course we spoke a lot about work culture,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1947153934839394354" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1938824378067886297-GugWamkW4AAo0Ok.jpg" alt="DosaWithMouli - June 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2025</div>
+                            <p class="tweet-text">Caught up @lkeshre for breakfast. Not quite #dosaWithMouli but the conversation and company compensated. We go back quite a bit when @_groww was just starting. We were cabin neighbours when I was building Travenues. Super interesting conversation about product challenges,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1938824378067886297" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1893159943764877802-GkXZzd5aoAMKOys.jpg" alt="DosaWithMouli - February 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2025</div>
+                            <p class="tweet-text">Amazing Saturday morning #dosaWithMouli meet-up with Bharadwaaj Rajan (BD) @Bharadwaaj_BD  . So much fun. Conversation that ranged all the way from his stereotypical engineering college choice, career arc, to Mu-Sigma&#x27;s very futuristic bets (like the Chief of Staff role that he…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1893159943764877802" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1887515636391420063-GjHNdlSbkAE8FQb.jpg" alt="DosaWithMouli - February 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2025</div>
+                            <p class="tweet-text">Met up with @girdharspeaks  for #dosaWithMouli at Umesh Refreshments, Indiranagar. Fascinating conversation about his journey from an electronics engineer to his MBA, and then to doing BD for Oyo, and then his PM stints, and now doing freelance Product Management (yep…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1887515636391420063" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1883094199463301163-GiIYLyqa8AAeJg-.jpg" alt="DosaWithMouli - January 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">January 2025</div>
+                            <p class="tweet-text">Wonderful saturday morning #dosaWithMouli with Vetri Venthan. Been planning this for a long time. Long winding conversation all the way from his childhood years (another Ashoknagar Chennai alumni ;-)) to his IIM-A days (which he claims were the best days of his life!), to a super…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1883094199463301163" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1877578452393746767-Gg5_o2-aMAA9E_d.jpg" alt="DosaWithMouli - January 2025" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">January 2025</div>
+                            <p class="tweet-text">Amazing Friday morning #dosaWithMouli with @pruthvi_p . We have worked in the same place thrice before - Stayzilla, Travenues, and Microsoft. 
+
+Free ranging conversation ranging from the small population of Ireland (where he works now), to frontend development, fun times at…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1877578452393746767" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="year-section" id="year-2024">
+                <h2 class="year-label">2024</h2>
+                <div class="tweet-list">
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1871761197575622944-GfnUlP8boAAF3i4.jpg" alt="DosaWithMouli - December 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2024</div>
+                            <p class="tweet-text">2024 was a blast. #dosaWithMouli enabled me to meet many new people, catch up with old friends, and has kind of become my thing. My &#x27;I have arrived moment&#x27; was when someone in SF airport came up to me and mentioned they knew me because of #dosaWithMouli.
+
+Thank you Suri Raman,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1871761197575622944" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1871411187776356566-GfiWd8Sa8AAUdJA.jpg" alt="DosaWithMouli - December 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2024</div>
+                            <p class="tweet-text">And the last #dosaWithMouli of 2024 was with Garima at Vedam Sarjapur. Garima was on my team at MS before I left and in the one year we had worked together, she had left an impact on me. 
+
+Super interesting conversation around AI, culture dynamics, cross-geographic working…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1871411187776356566" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1858011677549277559-Gcj7xGOaMAMVmWI.jpg" alt="DosaWithMouli - November 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">November 2024</div>
+                            <p class="tweet-text">Back to picking startup folks and founders minds. Super interesting conversation with @rajamohantweets ranging between growth, early users, Ai SaaS and everything in between. Thanks for all the fundas man and taking the time. #dosaWithMouli at MTR HSR.</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1858011677549277559" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1851489678471614898-GbHP7_FbQAEHNnw.jpg" alt="DosaWithMouli - October 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">October 2024</div>
+                            <p class="tweet-text">Today morning&#x27;s #dosaWithMouli was a double dhamaka. Two friends whom I have been dabbling with on twitter and on #ThindiCapital whatsapp groups. Had originally planned to meet up with @roshanonline but he came with a super surprise @DeePakao. Fascinating conversation about their…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1851489678471614898" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1847502189318844799-GaOlb6obUAAVBh3.jpg" alt="DosaWithMouli - October 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">October 2024</div>
+                            <p class="tweet-text">Fascinating start to the day- #dosaWithMouli with @taapsiturvy who is a cultural anthropologist who is building an AI product for making user research in a more digestible accessible manner. We had bumped into each other at DesignUp Conference a few weeks back and we found out…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1847502189318844799" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1823756098446217349-GU9IQCdWYAAnppH.jpg" alt="DosaWithMouli - August 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">August 2024</div>
+                            <p class="tweet-text">Had an awesome #dosaWithMouli with @Taruna2309 today. Free ranging conversation mostly revolving career choices, cultures, growth, competencies, her current work at LinkedIn, and everything in between. Lots of fun over a great masala dose of course. We have known each other for a…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1823756098446217349" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1815619705958436873-GTJgelpaYAAtY55.jpg" alt="DosaWithMouli - July 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2024</div>
+                            <p class="tweet-text">Perfect drizzly morning for a #dosaWithMouli meet with @vinaykesari. This has been pending for a long long time. We have been connected and bantering on twitter for a very long time. 
+
+First #dosaWithMouli meet up with a lawyer. Amazing conversation winding around our study and…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1815619705958436873" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1811996515704979707-GSWAdNvWkAAy0OB.jpg" alt="DosaWithMouli - July 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2024</div>
+                            <p class="tweet-text">And of course, Indiranagar being Indiranagar, when we were stepping out, we bumped into @mister_whistler and @_svs_. Chatted briefly. I had met Mahesh a while back, but met SVS for the first time. Sire - we should meet up next time you are in town. 2/
+
+#dosaWithMouli #Serendipity…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1811996515704979707" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1811996509824495745-GSWACtxWkAAAOjk.jpg" alt="DosaWithMouli - July 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2024</div>
+                            <p class="tweet-text">Saturday morning well spent. Started with #dosaWithMouli with none other than @_swanand. We have been connected for at least 10 years on twitter and on various WA groups. First time meeting. 
+
+Free flowing conversation ranging from consulting getting a bad rep, to Bangalore and…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1811996509824495745" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1809815696726994983-GR3Bm7MXIAAdlAd.jpg" alt="DosaWithMouli - July 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2024</div>
+                            <p class="tweet-text">Another great Sunday morning. #dosaWithMouli with long time friend @aswinsamba. These were folks from my startup days, from whom I derived a lot of energy, from sharing our stories, and thereby deriving a sense of comfort and mutual confidence. Very grateful for these folks.…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1809815696726994983" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1808360227676319840-GRiVD_-WYAAZ-ua.jpg" alt="DosaWithMouli - July 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2024</div>
+                            <p class="tweet-text">Mid-week #dosaWithMouli meet-up. This has been one in the making for multiple years. @adityaprao  and me have been connected for a long while, but he was in the US and I was in India. So it had to be manifested that he relocate back to India, and to Bangalore (where he grew up),…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1808360227676319840" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1805465097067708733.jpg" alt="DosaWithMouli - June 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2024</div>
+                            <p class="tweet-text">My small trigger that warms people’s hearts is #dosaWithMouli. ❤️</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1805465097067708733" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1804719291528601607-GQumnpGagAAqsE_.jpg" alt="DosaWithMouli - June 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2024</div>
+                            <p class="tweet-text">Sunday morning #dosaWithMouli is always fun. But it’s even more fun with old friends. Amazing conversation about his work, devops, GenAI, GPU clusters, data centres, Bangalore, UAE, and a lot more. Thanks @cruisemaniac for making the hike all the way from Gottigere to HSR</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1804719291528601607" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1802558934772801725-GQP4cqmW4AA0lXV.jpg" alt="DosaWithMouli - June 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2024</div>
+                            <p class="tweet-text">Another Monday morning. Another awesome start to the week with #dosaWithMouli. Caught up with Giridhur (@irishdrug1511) over amazing dose, pongal, vade and filter coffee at Vedam, Sarjapur.
+
+Broad ranging conversation all the way from his IIT coaching / IIT days, to company…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1802558934772801725" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1794587315412557968-GOennr3WwAANSHm.jpg" alt="DosaWithMouli - May 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">May 2024</div>
+                            <p class="tweet-text">Amazing Sunday morning #dosaWithMouli with @tyags6. Awesome conversation ranging from travel, life choices, eye opening times when we first travel abroad, writing, mentoring, Gaggan episode of Chefs Table, Bangkok, to commutes. Time flew by. And of course there was #dose, vade,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1794587315412557968" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1793136101101601007-GOJ_bitW8AE3Imj.jpg" alt="DosaWithMouli - May 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">May 2024</div>
+                            <p class="tweet-text">A #dosaWithMouli meeting is one of the best things to do in the midst of high intensity work pressure times. Met up with @HiteshManwar . Hitesh used to be in my team back when I was in Outlook. He is now at Twillio doing some cool stuff. 
+
+Wonderful morning banter wandering all…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1793136101101601007" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1766873804075356326-GIUxp7OboAANdvT.jpg" alt="DosaWithMouli - March 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2024</div>
+                            <p class="tweet-text">After an amazing #dosaWithMouli breakfast Chennai edition, and a fun panel discussion in the afternoon organised by the awesome folks at @ecell_iitm, some more of us friends (old and new) got together for an super fun ice cream discussion. Super fun discussion with @VijayT1609,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1766873804075356326" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1766718592446505167-GISkZAEbkAAWWb_.jpg" alt="DosaWithMouli - March 2024" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2024</div>
+                            <p class="tweet-text">Amazing #dosaWithMouli session Chennai edition today morning. Wonderful conversation. Yummy dosaes. And filter coffee of course. Super diverse interesting group of folks from the Chennai ecosystem. @SunOfGan @giridharvc7  @Ashwinizer @aishashok14 @Vaidhi_R @sleepyhead148…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1766718592446505167" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="year-section" id="year-2023">
+                <h2 class="year-label">2023</h2>
+                <div class="tweet-list">
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1738143074126303608.jpg" alt="DosaWithMouli - December 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2023</div>
+                            <p class="tweet-text">August was three #dosaWithMouli meets, but each one was unmissable. Finally I met up with my close product team @Navnethan and Saraswathi for breakfast at Paakshala, before the @TheProductfolks conference. 
+
+15/</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1738143074126303608" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1738143060071235858.jpg" alt="DosaWithMouli - December 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2023</div>
+                            <p class="tweet-text">End of June had my first #dosaWithMouli in Chennai with long time friend @cruisemaniac. He is one of those true blue sys ad kinda devops guys with whom I enjoy old school tech convos with. 
+
+11/</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1738143060071235858" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1738143051833602144.jpg" alt="DosaWithMouli - December 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2023</div>
+                            <p class="tweet-text">May was a group #dosaWithMouli at Hyderabad alongside the dynamic @MotwaniSuhas of @TheProductfolks. A gang of very interesting Product folks of Hyd met up at Chutneys. @shraone_k
+@jayanth_s_iyer @gauravlakhani @reachaditya 
+
+ 
+8/</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1738143051833602144" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1720653646877327561-F-D9XN1aMAAx95f.jpg" alt="DosaWithMouli - November 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">November 2023</div>
+                            <p class="tweet-text">Awesome catching up with @RAnirud over mini tiffin at MTR. Brilliant conversations that spanned fintech to engineers as PMs to product thinking and everything in between. I had been informally mentoring Anirudh over quite some time and it’s a joy talking to him. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1720653646877327561" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1709454315776045431-F7kziWgXEAA1fxL.jpg" alt="DosaWithMouli - October 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">October 2023</div>
+                            <p class="tweet-text">Finally caught up with @madnavin for #dosaWithMouli. Whattay conversation from his journey at @InMobi to culture, awesome work anecdotes (including his team taking adv of his name with @NaveenTewari , his BD, growth, and customer journeys. We spoke about his love for travel,…</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1709454315776045431" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1706890081393336476-F7AXeVKXkAAG214.jpg" alt="DosaWithMouli - September 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">September 2023</div>
+                            <p class="tweet-text">Caught up Shraddha (colleague at work) for #dosaWithMouli today. At Vedam Sarjapur Road. Super impressed with the clean design and of course the spotless open kitchen. Lovely pudi and pudi masala was had. Drenched with ghee of course but oh well, it’s an indulgence.</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1706890081393336476" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1705111458240159930-F6nFlT6akAAw5io.jpg" alt="DosaWithMouli - September 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">September 2023</div>
+                            <p class="tweet-text">Awesome conversation with @HamadJowher. We spoke about his early years; RTI and filing a case;of working on mini-startups during his eng;his medical startup days;going from tech to business; his demand PM days. Whattay career arc. Loved the convo Hamad. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1705111458240159930" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1699289102632251456-F5UWY9TXwAAdVqJ.jpg" alt="DosaWithMouli - September 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">September 2023</div>
+                            <p class="tweet-text">Amazing conversation with @hvpandya. This has been long time pending. We spoke about power of meetups, startup war stories, radical candor/feedback, learnings, closeness to craft, @theproductfolks and so much more. So Much comfort builds up when you talk over food. #dosawithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1699289102632251456" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1697960038881735142-F5Bdor8a0AAZgbd.jpg" alt="DosaWithMouli - September 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">September 2023</div>
+                            <p class="tweet-text">Lovely conversation. Thanks so much @ojasvibhatia13 and @Headstarters for hosting me. We spoke about building 0-&amp;gt;1, challenges in large enterprises, travenues and aviation, and of course #dosaWithMouli :-)</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1697960038881735142" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1695292905982951800-F4bj6DYbIAEEAxk.jpg" alt="DosaWithMouli - August 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">August 2023</div>
+                            <p class="tweet-text">Hearty breakfast with team before the @TheProductfolks #Unconference event. Light hearted conversation because all the meaty convos happen at work anyway 😅. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1695292905982951800" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1692389338158633166-F3ySfxca0AAhTDj.jpg" alt="DosaWithMouli - August 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">August 2023</div>
+                            <p class="tweet-text">Dosa meet-up with the Queen of the Samosa Business - @DikshaPande3 ; and whattay an amazing convo it was. From her hotel/hospitality days at Oberoi, to innovation at Pizza Hut, to @Samosa_Party , and her quest to stop people looking down on our local foods. #dosaWithMouli 1/2</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1692389338158633166" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1689868199989497856-F3OeJMobEAABCXB.jpg" alt="DosaWithMouli - August 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">August 2023</div>
+                            <p class="tweet-text">Awesome catching up with @Prnv_B over dosai, Sambar vadai and brilliant hazelnut filter coffee at #thefiltercoffee. Wide ranging convo abt the interesting work (GTM, strategy) at @getpostman, company culture, developer tools, hybrid work and everything in between. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1689868199989497856" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1678734387251126273-F0wP-IvX0AECXlL.jpg" alt="DosaWithMouli - July 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2023</div>
+                            <p class="tweet-text">Was awesome catching up with Amit Singh . Fun convo ranging from his time in Bangalore, recent infra developments in Hyderabad, his industrial design exp, user persona differences between us and our parents gen, fun (earlier) Microsoft stints including MS Lens .. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1678734387251126273" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1677544000520343553-F0fVXjmX0AAWEea.jpg" alt="DosaWithMouli - July 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2023</div>
+                            <p class="tweet-text">Another of those meetings that has been long pending. Awesome conversation with @narayananh (NH)  ranging from his startup consulting work, food and sleep schedules, work and culture, Palakkad and Kumbakonam, to Hindi and it’s nuances that I don’t understand. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1677544000520343553" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1673673845440495622-FzoVdBuWwAgpP74.jpg" alt="DosaWithMouli - June 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2023</div>
+                            <p class="tweet-text">Fantastic catching up with THE cruise - @cruisemaniac.  Always a pleasure catching up with you man. Amazing conversations about career conviction, life in Abu Dhabi, Devops stories to good old times. What an amazing catch up. #ChaatOverChat #ChaatIsTheNewDosa #DosaWithMouli 😋😉</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1673673845440495622" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1665254388686811136-FxwsCRlX0AEm8K7.jpg" alt="DosaWithMouli - June 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2023</div>
+                            <p class="tweet-text">Awesome meeting up with @2shar. Free ranging conversation over dosa. Career arcs are amazing stories to hear and Tushar has an awesome one. We spoke about industry verticals, his writing gigs, life around Hosa Road, career forks and a lot more. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1665254388686811136" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1660853892287004673-FwyJzlEaYAEJb5O.jpg" alt="DosaWithMouli - May 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">May 2023</div>
+                            <p class="tweet-text">Another day. Another fantastic catchup over dosa. @harishv and me go back quite a while - around 12-13 yrs back. He was rocking Microsoft sales at that time. We met at one of the MVP summits. Since then he has pivoted to a PM leader. Awesome convo. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1660853892287004673" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1660154503348338688-FwoNtJGaEAESLHl.jpg" alt="DosaWithMouli - May 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">May 2023</div>
+                            <p class="tweet-text">Amazing set of people. Awesome conversations. Engaging stories. Hopefully new relationships formed. #dosaWithMouli was at Hyderabad today. Thanks folks for getting yourself out here on a Sunday early morning. 1/</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1660154503348338688" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1644211268591706114-FtFpFQraQAEJni1.jpg" alt="DosaWithMouli - April 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">April 2023</div>
+                            <p class="tweet-text">This week has been good. Second bkfst meetup. Was amazing meeting up with college mate @JaysRamblings. We met after 25 years. So many stories shared. Old and new. Microsoft sales. Product. Singapore. Education system there. 1.5 hours flew by like 15 minutes. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1644211268591706114" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1643659662691278850-Fs9y6IXaMAEt-n3.jpg" alt="DosaWithMouli - April 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">April 2023</div>
+                            <p class="tweet-text">Lovely breakfast/amazing convo with Ram. We used to work together back in  2012. He was visiting BLR (Works in Dublin).  You can see how his eyes lit up after seeing a dharshini dose after multiple years. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1643659662691278850" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1638472338319740930-Fr0FuePaYAU0Hae.jpg" alt="DosaWithMouli - March 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2023</div>
+                            <p class="tweet-text">Well met with @amuldotexe. Talking with this guy is therapy. Conversation ranged from being content, gratitude, cool stuff that he is building at his employer, logic and reasoning, raising next gen kids to anything else left under the sun :-) #dosaWithMouli #iykwim ;-)</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1638472338319740930" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1626514790154903552-FpKJ5CAacAEhtlx.jpg" alt="DosaWithMouli - February 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2023</div>
+                            <p class="tweet-text">Caught up with @ajayyprakash for breakfast today morning. We had worked together at Stayzilla before. Free ranging conversation from his unique career arc . PM quirks in different companies, Stayzilla stories, innovation to the importance of talking to customers. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1626514790154903552" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1621762542732451840-FoGneq4acAAT7C_.jpg" alt="DosaWithMouli - February 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2023</div>
+                            <p class="tweet-text">What an amazing morning. Dosa with some lovely designer folks from the Outlook team. Tagging @sargampr - the only one who I follow on twitter. (Sargam - tag others who are on here). Davanagere Benne Dosa and Raghavendra Tiffins. HSR. #DosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1621762542732451840" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1611595759362936833-Fl2JrNmagAAYgtC.jpg" alt="DosaWithMouli - January 2023" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">January 2023</div>
+                            <p class="tweet-text">Fantastic morning spent with @pruthvi_p, reminiscing old times at Stayzilla and Travenues. The latter stories are so close to the heart that sometimes some of us even choke up talking about those good times. #dosaWithMouli #memories</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1611595759362936833" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="year-section" id="year-2022">
+                <h2 class="year-label">2022</h2>
+                <div class="tweet-list">
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1596527537517387776-FigBPhyUoAEGSoZ.jpg" alt="DosaWithMouli - November 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">November 2022</div>
+                            <p class="tweet-text">Butter masale (self) and Onion Rava (wife’s favourite). Sukh sagar. Well, where else. Comfort food. #dosaWithMouli #dosaWithFamily</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1596527537517387776" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1544191578390011904.jpg" alt="DosaWithMouli - July 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">July 2022</div>
+                            <p class="tweet-text">A BBA grad who went to design. An engineer who went on to do people ops. And a VLSI CAD Engineer who went to do PM in travel startups. Oh man. This conversation was super fun. #dosaWithMouli  1/2</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1544191578390011904" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1542358387995934721.jpg" alt="DosaWithMouli - June 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">June 2022</div>
+                            <p class="tweet-text">Lovely catching up with Sameer today. Change of template. Met at Arogya Aahar today instead of Sukh Sagar. :-) #wellmet #dosawithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1542358387995934721" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1525707552775733248-FSxm7OPaIAAIcKs.jpg" alt="DosaWithMouli - May 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">May 2022</div>
+                            <p class="tweet-text">Lovely conversation with the ever smiling Abhiram. ML engineering, his career path, people relationships, South Bangalore, dosa quality consistency, Microsoft, and much more. Awesome dosas were of course had. #dosawithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1525707552775733248" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1506846125873000450-FOlkj8UakAAkhrB.jpg" alt="DosaWithMouli - March 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2022</div>
+                            <p class="tweet-text">Met up with @K2_181 for dosa. Super exciting conversation ranging from his @FyleHQ (his expense management startup), to eating places in Bangalore to remote/hybrid working. Super energised. Thanks for hiking all the way from Bellandur man. #dosawithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1506846125873000450" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1503227380797960192-FNyJU5YVsAQ-R9b.jpg" alt="DosaWithMouli - March 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">March 2022</div>
+                            <p class="tweet-text">Super awesome breakfast conversation with @jiteshluthra. Fun convo ranging from travel, airplanes, listening, connecting people, startups and more. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1503227380797960192" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1496709356427137028.jpg" alt="DosaWithMouli - February 2022" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">February 2022</div>
+                            <p class="tweet-text">Lovely meeting up with @mister_whistler. Fun free ranging conversation. And of course lovely dosa was had. #DosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1496709356427137028" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="year-section" id="year-2021">
+                <h2 class="year-label">2021</h2>
+                <div class="tweet-list">
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1473143618139426816-FHGoTypVgAMI893.jpg" alt="DosaWithMouli - December 2021" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2021</div>
+                            <p class="tweet-text">Fantastic breakfast meeting with @nikhiljoisr -  the OG connector. Freewheeling chat about his current startup, enterprise software, our journeys and how life events influenced it, connecting the dots, investing, what is “enough”. Morning well spent. #dosaWithMouli</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1473143618139426816" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="tweet-card">
+                        <img src="dosa-photos/1471331503875387392-FGs4M1FUcAEYJsD.jpg" alt="DosaWithMouli - December 2021" loading="lazy">
+                        <div class="tweet-card-body">
+                            <div class="tweet-month">December 2021</div>
+                            <p class="tweet-text">Finally met ⁦@Venknar⁩ after working together for more than a year. #wellmet #dosaWithMouli #sukhSagar</p>
+                            <a class="tweet-link" href="https://x.com/gcmouli/status/1471331503875387392" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                View on X
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </div>
     </div>
+
+    <footer>
+        <p><a href="https://gcmouli.com">gcmouli.com</a></p>
+    </footer>
+
+    <script>
+        // Highlight active year in sidebar on scroll
+        var sections = document.querySelectorAll('.year-section');
+        var navLinks = document.querySelectorAll('.year-nav-link');
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var year = entry.target.id.replace('year-', '');
+                    navLinks.forEach(function(link) {
+                        link.classList.toggle('active', link.dataset.year === year);
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+
+        sections.forEach(function(section) {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
